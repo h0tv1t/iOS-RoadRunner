@@ -56,7 +56,11 @@ extension MainViewController: WKUIDelegate, WKNavigationDelegate {
 
     @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!){
-        activityIndicator = UIActivityIndicatorView(style: .large)
+        if #available(iOS 13.0, *) {
+            activityIndicator = UIActivityIndicatorView(style: .large)
+        } else {
+            activityIndicator = UIActivityIndicatorView()
+        }
         activityIndicator.frame = CGRect(x: view.frame.midX-50, y: view.frame.midY-50, width: 100, height: 100)
         activityIndicator.color = UIColor.lightGray
         activityIndicator.hidesWhenStopped = true
@@ -70,11 +74,13 @@ extension MainViewController: WKUIDelegate, WKNavigationDelegate {
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
         
-        UIView.animate(withDuration: 0.5, animations: {
-            self.viewBG.alpha = 0
-        }) { (finished) in
-            self.viewBG.isHidden = true
-            self.viewBG.removeFromSuperview()
+        if viewBG != nil {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.viewBG.alpha = 0
+            }) { (finished) in
+                self.viewBG.isHidden = true
+                self.viewBG.removeFromSuperview()
+            }
         }
     }
     
