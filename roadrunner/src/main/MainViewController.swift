@@ -34,7 +34,6 @@ class MainViewController: UIViewController {
 
 extension MainViewController: WKUIDelegate, WKNavigationDelegate {
     
-    @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Swift.Void){
     let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     let otherAction = UIAlertAction(title: "OK", style: .default, handler: {action in completionHandler()})
@@ -43,7 +42,6 @@ extension MainViewController: WKUIDelegate, WKNavigationDelegate {
     self.present(alert, animated: true, completion: nil)
     }
 
-    @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Swift.Void){
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: {(action) in completionHandler(false)})
@@ -54,7 +52,6 @@ extension MainViewController: WKUIDelegate, WKNavigationDelegate {
     }
 
 
-    @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!){
         if #available(iOS 13.0, *) {
             activityIndicator = UIActivityIndicatorView(style: .large)
@@ -69,7 +66,6 @@ extension MainViewController: WKUIDelegate, WKNavigationDelegate {
     }
 
 
-    @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
