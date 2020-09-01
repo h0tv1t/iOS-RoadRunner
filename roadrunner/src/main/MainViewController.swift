@@ -21,13 +21,11 @@ class MainViewController: UIViewController {
         webMain.uiDelegate = self
         webMain.navigationDelegate = self
         
-        let roadRunnerURL = "http://roadrunner-front.s3-website.ap-northeast-2.amazonaws.com"
+        let roadRunnerURL = "https://app.roadrunner-team.com/"
         let url = URL(string: roadRunnerURL)
         let request = URLRequest(url: url!)
         webMain.load(request)
     }
-
-
 }
 
 
